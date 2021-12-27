@@ -6,16 +6,11 @@
 #    By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 23:26:50 by sejeon            #+#    #+#              #
-#    Updated: 2021/12/27 23:35:20 by sejeon           ###   ########.fr        #
+#    Updated: 2021/12/27 23:45:01 by sejeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
 
 SRCS = ft_isascii.c ft_putchar_fd.c ft_strchr.c ft_strlen.c ft_substr.c ft_atoi.c \
        ft_isdigit.c ft_memchr.c ft_strdup.c ft_strmapi.c ft_tolower.c ft_bzero.c ft_isprint.c \
@@ -26,31 +21,24 @@ SRCS = ft_isascii.c ft_putchar_fd.c ft_strchr.c ft_strlen.c ft_substr.c ft_atoi.
 SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c \
      	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
-SRCS_DIR = ./
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS)))
-SRCS_B = $(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_BONUS)))
-
-OBJS_DIR = ./
-OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS)))
-OBJS_B = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_BONUS)))
-
-.c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
-
-$(NAME): $(OBJS)
-   	$(AR) $@ $^
-
-bonus: $(OBJS_B)
-      	$(AR) $(NAME) $^
-
-all: $(NAME)
-
-clean:
-	$(RM) $(OBJS) $(OBJS_B)
-
-fclean: clean
-	$(RM) $(NAME)
-
-re: clean all
-
-.PHONY: bonus all clean fclean re
+OBJS    = $(SRCS:.c=.o)
+OBJS_B = $(SRCS_B:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
+AR = ar
+ARFLAGS = crs
+RM = rm
+RMFLAGS = -f
+all : $(NAME)
+%.o : %.c
+	$(CC) $(CFLAG) -c $< -o $@
+$(NAME) : $(OBJS)
+	$(AR) $(ARFLAGS) $@ $^
+bonus : $(OBJS) $(OBJS_B)
+	$(AR) $(ARFLAGS) $(NAME) $^
+clean :
+       $(RM) $(RMFLAGS) $(OBJS) $(OBJS_B)
+fclean : clean
+       $(RM) $(RMFLAGS) $(NAME)
+re : fclean all
+.PHONY : all clean fclean re
