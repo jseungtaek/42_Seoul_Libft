@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 21:58:22 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/27 22:35:47 by sejeon           ###   ########.fr       */
+/*   Updated: 2021/12/29 20:25:12 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_itoa(int n)
 	char		*res;
 	int			i;
 	long long	num;
+	int			len;
 
 	len = ft_tlen(n);
 	num = n;

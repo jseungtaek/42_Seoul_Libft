@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 15:06:47 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/20 19:38:30 by sejeon           ###   ########.fr       */
+/*   Updated: 2021/12/29 20:25:50 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest_len = ft_strlen(dest);
 	src_len = ft_strlen(src);
 	if (dest_len > size)
-		return (srclen + size);
+		return (src_len + size);
 	while (*dest)
 	{
 		dest++;
