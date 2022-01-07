@@ -6,15 +6,15 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:41:17 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 17:27:14 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 17:42:40 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int t_len(char const *s, char c)
+static int	t_len(char const *s, char c)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	while (*s)
@@ -31,9 +31,9 @@ static int t_len(char const *s, char c)
 	return (len);
 }
 
-static char **free_malloc(char **ret)
+static char	**free_malloc(char **ret)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (!ret[i])
@@ -42,12 +42,13 @@ static char **free_malloc(char **ret)
 		i++;
 	}
 	free(ret);
+	return (NULL);
 }
 
-static char *cp_word(char const *s, int len)
+static char	*cp_word(char const *s, int len)
 {
-	char *word;
-	int i;
+	char	*word;
+	int		i;
 
 	i = 0;
 	word = (char *)malloc(sizeof(char) * (len + 1));
@@ -62,12 +63,12 @@ static char *cp_word(char const *s, int len)
 	return (word);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	char **arr;
-	int i;
-	int j;
-	int st;
+	char	**arr;
+	int		i;
+	int		j;
+	int		st;
 
 	i = 0;
 	j = 0;
