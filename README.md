@@ -2,10 +2,12 @@
 ## 42_Seoul first assignment Libft
 
 # 🚀 memset
+
 #include <string.h>
 
 void *
 memset(void *b, int c, size_t len);
+
 ✔️ Description
 The memset() function writes len bytes of value c (converted to an unsigned char) to the
 string b.
@@ -26,6 +28,7 @@ memset()과 bzero() 모두 unsigned char로 캐스팅하는 과정이 있다.
 1바이트 변수를 제외한 변수를 초기화 할 시, 0이외의 값으로 초기화 안됨.
 
 # 🚀 bzero
+
 #include <string.h>
 
  void
