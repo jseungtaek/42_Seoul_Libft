@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 21:58:22 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 13:44:12 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 15:29:03 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,19 @@
 static int	ft_tlen(long int n)
 {
 	int	len;
+	long	num;
 
 	len = 0;
+	num = n;
 	if (n <= 0)
-		len++;
-	while (n)
 	{
 		len++;
-		n /= 10;
+		num *= -1;
+	}
+	while (num)
+	{
+		len++;
+		num /= 10;
 	}
 	return (len);
 }
