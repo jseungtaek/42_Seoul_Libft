@@ -12,9 +12,9 @@
 
 #include "libft.h"
 
-static int	t_len(char const *s, char c)
+static int t_len(char const *s, char c)
 {
-	int	len;
+	int len;
 
 	len = 0;
 	while (*s)
@@ -31,12 +31,12 @@ static int	t_len(char const *s, char c)
 	return (len);
 }
 
-static void	free_malloc(char **ret, int word)
+static char **free_malloc(char **ret)
 {
-	int	i;
+	int i;
 
 	i = 0;
-	while (i < word)
+	while (!ret[i])
 	{
 		free(ret[i]);
 		i++;
@@ -44,10 +44,10 @@ static void	free_malloc(char **ret, int word)
 	free(ret);
 }
 
-static char	*cp_word(char const *s, int len)
+static char *cp_word(char const *s, int len)
 {
-	char	*word;
-	int		i;
+	char *word;
+	int i;
 
 	i = 0;
 	word = (char *)malloc(sizeof(char) * (len + 1));
@@ -62,12 +62,12 @@ static char	*cp_word(char const *s, int len)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char **ft_split(char const *s, char c)
 {
-	char	**arr;
-	int		i;
-	int		j;
-	int		st;
+	char **arr;
+	int i;
+	int j;
+	int st;
 
 	i = 0;
 	j = 0;
@@ -82,7 +82,7 @@ char	**ft_split(char const *s, char c)
 		while (s[i] && s[i] != c)
 			i++;
 		if (cp_word(s + st, i - st) == 0)
-			free_malloc(arr, j);
+			free_malloc(arr);
 		arr[j++] = cp_word(s + st, i - st);
 	}
 	arr[j] = 0;
