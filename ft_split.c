@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:41:17 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 22:09:51 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 22:28:21 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	t_len(char const *s, char c)
 		else
 		{
 			len++;
-			while (s[i] != c)
+			while (s[i] != c && s[i])
 				i++;
 		}
 	}
@@ -75,7 +75,7 @@ static void	cp_split(char const *s, char c, char **arr)
 	len = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c)
+		while (s[i] && s[i] == c)
 			i++;
 		if (s[i] == '\0')
 			break ;
