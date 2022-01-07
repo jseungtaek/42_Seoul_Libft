@@ -130,7 +130,6 @@ strcmp와 차이점은, 두 문자열 중 하나가 끝나더라도 서로 다�
 따라서, s1, s2 모두 NULL값이 나오면 남은 카운트 관계 없이 0을 반환한 strcmp와 차이가 있다.
 
 # 🚀 strlen
----
 
 # 🚀 strlcpy
 #include <string.h>
@@ -169,7 +168,7 @@ c의 주소를 리턴한다. 찾는 문자가 s안에 없다면 NULL포인터를
 ⁉️ Notice
 
 # 🚀 strrchr
----
+
 # 🚀 strnstr
 #include <string.h>
 
@@ -191,14 +190,11 @@ needle이 처음 나타나는 주소를 리턴한다. 만약 없다면 NULL을 �
 
 # 🚀 strncmp
 
----
-
 # 🚀 atoi
 
 ⁉️ Notice
 atoi함수는 long long max 보다 큰 오버플로우 시 -1, long long min 보다 작은 언더플로우 시 0이 반환된다.
 
----
 🚀 isalpha
 🚀 isdigit
 🚀 isalnum
@@ -206,7 +202,7 @@ atoi함수는 long long max 보다 큰 오버플로우 시 -1, long long min 보
 🚀 isprint
 🚀 toupper
 🚀 tolower
----
+
 # 🚀 calloc
 #include <stdlib.h>
 
