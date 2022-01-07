@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 22:57:36 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/27 22:58:53 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 16:33:24 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	if (lst == 0)
+	if (lst == 0 || del == 0)
 		return ;
 	while (*lst)
 	{
-		tmp = *lst;
-		*lst = tmp -> next;
-		ft_lstdelone(tmp, del);
+		tmp = *lst -> next;
+		ft_lstdelone(*lst, del);
+		*lst = tmp;
 	}
 }
