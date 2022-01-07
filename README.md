@@ -190,10 +190,14 @@ needle이 처음 나타나는 주소를 리턴한다. 만약 없다면 NULL을 �
 ⁉️ Notice
 
 # 🚀 strncmp
+
 ---
+
 # 🚀 atoi
+
 ⁉️ Notice
 atoi함수는 long long max 보다 큰 오버플로우 시 -1, long long min 보다 작은 언더플로우 시 0이 반환된다.
+
 ---
 🚀 isalpha
 🚀 isdigit
