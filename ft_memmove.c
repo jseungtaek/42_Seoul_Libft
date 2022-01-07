@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 14:22:22 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 13:19:50 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 14:32:53 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	{
 		while (n)
 		{
-			*n_dst++ = *n_src;
+			*n_dst++ = *n_src++;
 			n--;
 		}
 	}

@@ -6,13 +6,13 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 13:33:24 by sejeon            #+#    #+#             */
-/*   Updated: 2021/11/13 13:34:30 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 14:47:25 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
 int	ft_isalpha(int c)
 {
-	return (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z');
+	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
