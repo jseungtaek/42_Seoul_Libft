@@ -6,7 +6,7 @@
 #    By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/27 23:26:50 by sejeon            #+#    #+#              #
-#    Updated: 2022/01/07 16:00:49 by sejeon           ###   ########.fr        #
+#    Updated: 2022/01/07 16:56:29 by sejeon           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRCS_BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_b
 	ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
 
 OBJS = $(SRCS:.c=.o)
-OBJS_B = $(SRCS_B:.c=.o)
+OBJS_B = $(SRCS_BONUS:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar

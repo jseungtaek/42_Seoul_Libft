@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 22:44:34 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 16:34:09 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 17:01:11 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (lst == 0 || new == 0)
 		return ;
-	new -> next = *lst;
+	new->next = *lst;
 	*lst = new;
 }

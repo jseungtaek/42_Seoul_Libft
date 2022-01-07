@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:41:17 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/27 22:36:33 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 17:27:14 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ static int	t_len(char const *s, char c)
 		}
 	}
 	return (len);
+}
+
+static void	free_malloc(char **ret, int word)
+{
+	int	i;
+
+	i = 0;
+	while (i < word)
+	{
+		free(ret[i]);
+		i++;
+	}
+	free(ret);
 }
 
 static char	*cp_word(char const *s, int len)
@@ -68,6 +81,8 @@ char	**ft_split(char const *s, char c)
 		st = i;
 		while (s[i] && s[i] != c)
 			i++;
+		if (cp_word(s + st, i - st) == 0)
+			free_malloc(arr, j);
 		arr[j++] = cp_word(s + st, i - st);
 	}
 	arr[j] = 0;

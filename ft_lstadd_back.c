@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 22:50:38 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/27 22:52:43 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 17:00:59 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	if (lst == NULL || new == NULL)
 		return ;
 	if (*lst == NULL)
-		*lst = new;
-	else
 	{
-		lst_last = ft_lstlast(*lst);
-		lst_last -> next = new;
+		*lst = new;
+		return ;
 	}
+	lst_last = ft_lstlast(*lst);
+	lst_last->next = new;
 }
