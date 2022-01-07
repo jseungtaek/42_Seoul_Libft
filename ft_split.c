@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:41:17 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 17:43:40 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 18:08:53 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,7 @@ static char	*cp_word(char const *s, int len)
 	word = (char *)malloc(sizeof(char) * (len + 1));
 	if (word == 0)
 		return (0);
-	while (i < len)
-	{
-		word[i] = s[i];
-		i++;
-	}
-	word[i] = 0;
+	ft_strlcpy(word, s, len + 1);
 	return (word);
 }
 
