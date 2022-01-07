@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/13 14:09:33 by sejeon            #+#    #+#             */
-/*   Updated: 2021/11/13 14:15:46 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 13:13:11 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	len;
+	size_t			len;
+	unsigned char	*dst;
 
 	len = 0;
-	if (s == 0)
-		return ;
-	while (len < n)
+	dst = s;
+	while (len++ < n)
 	{
-		*(char *)(s + len) = 0;
-		len++;
+		*dst++ = 0;
 	}
 }

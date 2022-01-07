@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 19:00:14 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/20 19:30:23 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 13:25:34 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(const char *nptr)
 			operator = -1;
 		i++;
 	}
-	while (nptr[i] != 0 && (nptr[i] >= '0' && nptr[i] <= '9'))
+	while (nptr[i] != '\0' && (nptr[i] >= '0' && nptr[i] <= '9'))
 	{
 		result = result * 10 + nptr[i] - '0';
 		i++;

@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 18:43:09 by sejeon            #+#    #+#             */
-/*   Updated: 2021/12/20 18:58:50 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 13:24:09 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,14 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (little == 0)
+	if (little[0] == '\0')
 		return ((char *) big);
-	while (big[i] != 0 && len > 0)
+	while (big[i] != '\0' && len > 0)
 	{
 		j = 0;
 		while (big[i + j] == little[j] && j < len)
 		{
-			if (little[j] == 0)
+			if (little[j] == '\0')
 				return ((char *) big);
 			j++;
 		}
