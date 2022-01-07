@@ -1,74 +1,29 @@
 # 42_Seoul_Libft
 ## 42_Seoul first assignment Libft
 
-🚀 memset
+# 🚀 memset
 #include <string.h>
 
 void *
 memset(void *b, int c, size_t len);
-구현 코드
-
-void	*ft_memset(void *p, int c, size_t len)
-{
-	size_t	i;
-	char	*ptr;
-
-	i = 0;
-	ptr = (char *)p;
-	while (i < len)
-	{
-		ptr[i] = (unsigned char)c;
-		i++;
-	}
-	return ((void*)ptr);
-}
 ✔️ Description
 The memset() function writes len bytes of value c (converted to an unsigned char) to the
 string b.
+
 memset()함수는 b 가 가리키는 메모리 주소부터 len 바이트만큼 c값을 채운다.
 이때, int로 받는 c는 함수 내부에서 unsigned char로 자동 변경된다.
+
 ✔️ Note
 unsigned char는 모든 bit를 투명하게 볼 수 있다. (부호비트가 없기 때문)
 따라서, 임의의 메모리에 바이트 단위로 접근해 값을 다룰 때, 반드시 unsigned char를 사용한다.
 0, -1, 0x3F, 0x7F를 제외한 나머지 값은 원하는 값으로 초기화할 수 없다.
+
 ✔️ Return
 성공 시 첫번째 인자로 들어간 ptr을 반환, 실패 시 NULL을 반환한다.
 
 ⁉️ Notice
 memset()과 bzero() 모두 unsigned char로 캐스팅하는 과정이 있다.
 1바이트 변수를 제외한 변수를 초기화 할 시, 0이외의 값으로 초기화 안됨.
-int n;
-memset(&n, 1, sizeof(int));
-//n = [00000001000000010000000100000001] = 16843009
-new, malloc 등 동적 배열 생성하는 변수가 있는 struct, class는 memset으로 초기화 안됨.
-사용 시, 각각 분리하여 초기화.
-struct A 
-{
-   int i;
-   char* c;
-};
-  
-void main()
-{
-   A a;
-   a.c = new char[100];
-   memset(&a, 0, sizeof(A));
-   if(a.c != NULL) 
-   {
-      delete[] a.c;
-      a.c = NULL;
-   }
-}
-/*여기서 sizeof(A)는 struct member alignment가 어떤 값이든
- 4(int i) + 4(char* c, address는 4) = 8Bytes.
-그러므로 위의 소스는 동적으로 생성한 변수는 초기화가 되지 못하고, 
-char* c가 NULL로 초기화가 됨으로써, 
-이전에 생성한 메모리는 메모리 누수가 발생.*/
-
-//사용 시 분리하여 초기화
-a.i = 0;
-memset(a.c, 0, sizeof(char)*100);
-
 
 # 🚀 bzero
 
@@ -79,103 +34,59 @@ memset(a.c, 0, sizeof(char)*100);
 
  void
  bzero(void *s, size_t n);
-구현 코드
 
-void	ft_bzero(void *p, size_t n)
-{
-	size_t	i;
-	char	*ptr;
-
-	ptr = (char *)p;
-	i = 0;
-	while (i < n)
-	{
-		ptr[i] = 0;
-		i++;
-	}
-	return ;
-}
 ✔️ Description
 The bzero() function writes n zeroed bytes to the string s. If n is zero, bzero() does
 nothing.
+
 bzero()함수는 s가 가리키는 메모리로부터 n바이트만큼 0값을 채운다.
+
 ✔️ Return
 none
 
 ⁉️ Notice
 memset()과 bzero() 모두 unsigned char로 캐스팅하는 과정이 있다.
-🚀 memcpy
+
+# 🚀 memcpy
 #include <string.h>
 
      void *
      memcpy(void *restrict dst, const void *restrict src, size_t n);
 ❗42에서 restrict 사용 불가
 
-구현 코드
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	char		*temp_dest;
-	const char	*temp_src;
-	size_t		i;
-
-	i = 0;
-	temp_dest = (char *)dest;
-	temp_src = (const char *)src;
-	while (i < n)
-	{
-		temp_dest[i] = temp_src[i];
-		i++;
-	}
-	return (dest);
-}
 ✔️ Restrict?
 restrict 포인터는 메모리 접근에 관련된 최적화 기능 (C99 표준).
 포인터가 하나만 가리키고 있다는 것을 컴파일러가 알면, 메모리 복사 없이 비트연산자를 이용해 연산한다.
 알맞은 조건이 적용되면, 성능이 비약적으로 증가한다.
+
 ✔️ Description
 The memcpy() function copies n bytes from memory area src to memory area dst. If dst and
 src overlap, behavior is undefined. Applications in which dst and src might overlap should
 use memmove(3) instead.
+
 memcpy()함수는 src가 가리키는 메모리 주소로부터 n바이트 크기(길이)만큼 dst메모리에 복사한다.
+
 ✔️ Return
 dst를 반환한다.
 
 ⁉️ Notice
 사용 시, 메모리 영역은 겹치면 안된다.
 곂친다면, memmove()함수를 사용해야 한다.
-🚀 memccpy
+
+#🚀 memccpy
 #include <string.h>
 
 void *
 memccpy(void *restrict dst, const void *restrict src, int c, size_t n);
 ❗42에서 restrict 사용 불가
 
-구현 코드
-
-void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
-{
-	unsigned char		*temp_dest;
-	const unsigned char	*temp_src;
-	size_t				i;
-
-	i = 0;
-	temp_dest = (unsigned char *)dest;
-	temp_src = (const unsigned char *)src;
-	while (i < n)
-	{
-		temp_dest[i] = temp_src[i];
-		if (temp_dest[i] == (unsigned char)c)
-			return (temp_dest + i + 1);
-		i++;
-	}
-	return (0);
-}
 ✔️ Description
 The memccpy() function copies bytes from string src to string dst. If the character c (as converted to an unsigned char) occurs in the string src, the copy stops and a pointer to the
 byte after the copy of c in the string dst is returned. Otherwise, n bytes are copied, and
 a NULL pointer is returned.
+
 memccpy()함수는 src가 가리키는 메모리 주소로부터 n바이트 크기(길이)만큼 dst메모리에 복사한다. 단, 문자 c를 만나게 되면 c까지 복사하고 중단한다.
+
 ✔️ Return
 dest에서 c의 다음 위치 (복사가 끝난 다음 메모리주소)를 리턴한다. c를 만나지 않는다면 n만큼 복사하고 NULL을 반환한다.
 
@@ -183,150 +94,72 @@ dest에서 c의 다음 위치 (복사가 끝난 다음 메모리주소)를 리�
 c를 1바이트 크기가 아닌 자료형을 사용하여 찾을 경우, 문제가 생긴다.
 memccpy함수는 1바이트 메모리만 비교하여 찾기 때문이다.
 굳이 int형을 다뤄야 한다면, 1 ~ 255 범위 내 사용하는 것이 좋다.
-#include <stdio.h>
-#include <string.h>
 
-int main(void)
-{
-	int word1[20] = { 0, };
-	int temp[] = {4423, 2, 3, 65281, 4};
-	int *result
-
-	result = memccpy(word1, temp, 65281, sizeof(temp));
-	if (result == 0)
-		printf("ss\n");
-	for (int i = 0; i < 5; i++)
-		printf("%d ", word1[i]);
-	printf("\n");
-}
-/*---출력---*/
-5 2 3 1 0
-🚀 memmove
+# 🚀 memmove
 #include <string.h>
 
 void *
 memmove(void *dst, const void *src, size_t len);
-구현 코드
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
-{
-	unsigned char		*temp_dest;
-	const unsigned char	*temp_src;
-
-	temp_dest = (unsigned char *)dst;
-	temp_src = (const unsigned char *)src;
-	if (temp_dest <= temp_src)
-		while (len--)
-			*(temp_dest++) = *(temp_src++);
-	else
-	{
-		temp_dest += (len - 1);
-		temp_src += (len - 1);
-		while (len--)
-			*temp_dest-- = *temp_src--;
-	}
-	return (dst);
-}
 ✔️ Description
 The memmove() function copies len bytes from string src to string dst. The two strings may
 overlap; the copy is always done in a non-destructive manner.
+
 memmove()함수는 len바이트만큼 src 메모리에서 dest로 복사한다.
 복사는 항상 비파괴 방식으로 진행된다.
 즉, src배열은 src와 dest메모리 영역과 겹치지 않는 메모리 영역부터 먼저 복사한다.
 src 주소가 dest보다 크다면, 순차적으로 데이터를 복사하면 된다.
 src 주소가 dest보다 작다면, src 마지막 바이트부터 dest + len에 복사한다.
+
 ✔️ Return
 dest 반환.
 
 ⁉️ Notice
 한 배열 안에서 복사를 수행하거나, src 시작주소가 dest 시작 주소보다 앞에 있으면서 두 주소 차이가 len보다 작으면 발생한다.
-🚀 memchr
+
+# 🚀 memchr
 #include <string.h>
 
 void *
 memchr(const void *s, int c, size_t n);
-구현 코드
 
-void	*ft_memchr(const void *p, int c, size_t n)
-{
-	const unsigned char	*ptr;
-	unsigned char		value;
-
-	ptr = (const unsigned char *)p;
-	value = (unsigned char)c;
-	while (n--)
-	{
-		if (*ptr == value)
-			return ((void *)ptr);
-		ptr++;
-	}
-	return (0);
-}
 ✔️ Description
 The memchr() function locates the first occurrence of c (converted to an unsigned char) in
 string s.
+
 memchr()함수는 s가 가리키는 메모리 주소로부터 n바이트 중 처음으로 c와 일치하는 값의 주소를 리턴한다.
+
 ✔️ Return
 c와 일치하는 값의 주소를 리턴한다. 찾지 못하면 NULL을 반환한다.
 
-⁉️ Notice
-🚀 memcmp
+# 🚀 memcmp
 #include <string.h>
 
 int
 memcmp(const void *s1, const void *s2, size_t n);
-구현 코드
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
-{
-	const unsigned char	*ptr1;
-	const unsigned char *ptr2;
-
-	ptr1 = (const unsigned char *)s1;
-	ptr2 = (const unsigned char *)s2;
-	while (n--)
-	{
-		if (*ptr1 != *ptr2)
-			return (*ptr1 - *ptr2);
-		ptr1++;
-		ptr2++;
-	}
-	return (0);
-}
 ✔️ Description
 The memcmp() function compares byte string s1 against byte string s2. Both strings are
 assumed to be n bytes long.
+
 s1이 가리키는 n바이트만큼의 데이터와 s2가 가리키는 n 바이트만큼의 데이터를 비교하여, 같으면 0을 리턴하고 다르면 0이 아닌 값을 리턴한다.
+
 ✔️ Return
-위 기재
 
 ⁉️ Notice
 함수 사용 시 오버플로우에 주의. (n은 버퍼보다 작거나 같게)
 strcmp와 차이점은, 두 문자열 중 하나가 끝나더라도 서로 다른 값이 나오거나 n개가 될 때까지 비교한다.
 따라서, s1, s2 모두 NULL값이 나오면 남은 카운트 관계 없이 0을 반환한 strcmp와 차이가 있다.
-🚀 strlen
-🚀 strlcpy
+
+# 🚀 strlen
+---
+
+# 🚀 strlcpy
 #include <string.h>
 
 size_t
 strlcpy(char * restrict dst, const char * restrict src, size_t dstsize);
-구현 코드
 
-size_t	ft_strlcpy(char *dst, char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	while (i + 1 < size && src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	while (src[i] != '\0')
-		i++;
-	return (i);
-}
 ✔️ Description
 The strlcpy() and strlcat() functions copy and concatenate strings with the same input
 parameters and output result as snprintf(3). They are designed to be safer, more consis-
@@ -339,29 +172,19 @@ the result if dstsize is not 0.
 strlcpy() 함수는 실수하지 않도록 디자인되었다.
 dstsize가 0이 아닌 경우 dstsize - 1만큼 문자를 src에서 dst로 복사 후 null을 포함하여 종료한다.
 ✔️ Return
-⁉️ Notice
-🚀 strlen
-🚀 strchr
+
+# 🚀 strchr
 #include <string.h>
 
 char	*ft_strchr(const char *s, int c);
-구현 코드
 
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)value)
-			return (s);
-		s++;
-	}
-	return (0);
-}
 ✔️ Description
 The strchr() function locates the first occurrence of c (converted to a char) in the string
 pointed to by s. The terminating null character is considered to be part of the string;
 therefore if c is \0', the functions locate the terminating\0'.
+
 strchr() 함수는 s에서 c문자가 가장 먼저 나타나는 곳을 찾는다.
+
 ✔️ Return
 c의 주소를 리턴한다. 찾는 문자가 s안에 없다면 NULL포인터를 리턴한다.
 
@@ -386,38 +209,9 @@ needle이 처음 나타나는 주소를 리턴한다. 만약 없다면 NULL을 �
 ⁉️ Notice
 🚀 strncmp
 🚀 atoi
-구현 코드
-
-int		ft_atoi(const char *str)
-{
-	unsigned long long	answer;
-	unsigned long long	max;
-	int					flag;
-
-	answer = 0;
-	flag = 1;
-	max = 9223372036854775807;
-	while ((*str >= 9 && *str <= 13) || *str == ' ')
-		str++;
-	if (*str == '+' || *str == '-')
-	{
-		if (*str == '-')
-			flag *= -1;
-		str++;
-	}
-	while (ft_isdigit(*str))
-	{
-		answer = (answer * 10) + (*str - '0');
-		if (flag == 1 && answer > max)
-			return (-1);
-		if (flag == -1 && answer > max + 1)
-			return (0);
-		str++;
-	}
-	return (answer * flag);
-}
 ⁉️ Notice
 atoi함수는 long long max 보다 큰 오버플로우 시 -1, long long min 보다 작은 언더플로우 시 0이 반환된다.
+---
 🚀 isalpha
 🚀 isdigit
 🚀 isalnum
@@ -425,6 +219,7 @@ atoi함수는 long long max 보다 큰 오버플로우 시 -1, long long min 보
 🚀 isprint
 🚀 toupper
 🚀 tolower
+---
 🚀 calloc
 #include <stdlib.h>
 
@@ -1065,5 +860,5 @@ Iterates the list ’lst’ and applies the function ’f’ to the content of e
 ⁉️ Notice
 구조체와 연결리스트에 대해 알아보자.
 함수포인터에 대해 알아보자.
-profile
-Hans Park
+
+출처 : https://velog.io/@tmdgks2222/libft#-calloc
