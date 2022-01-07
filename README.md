@@ -146,8 +146,10 @@ strlcpy() and strlcat() take the full size of the destination buffer and guarant
 mination if there is room. Note that room for the NUL should be included in dstsize.
 strlcpy() copies up to dstsize - 1 characters from the string src to dst, NUL-terminating
 the result if dstsize is not 0.
+
 strlcpy() 함수는 실수하지 않도록 디자인되었다.
 dstsize가 0이 아닌 경우 dstsize - 1만큼 문자를 src에서 dst로 복사 후 null을 포함하여 종료한다.
+
 ✔️ Return
 
 # 🚀 strchr
@@ -168,6 +170,9 @@ c의 주소를 리턴한다. 찾는 문자가 s안에 없다면 NULL포인터를
 ⁉️ Notice
 
 # 🚀 strrchr
+
+✔️ Return
+strchr과 마찬가지이나, 다른점은 뒤에서부터 찾는 함수 str이 빈 문자열일때나 s의 첫 문자만 c일 때, NULL이 아니라 s의 첫글자를 반환하도록 예외처리함.
 
 # 🚀 strnstr
 #include <string.h>
