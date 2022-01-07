@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/27 20:41:17 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 21:19:48 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 21:30:54 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,29 +63,38 @@ static char	*cp_word(char const *s, int len)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+static void	cp_split(char const *s, char c, char **arr)
 {
-	char	**arr;
-	int		i;
-	int		j;
-	int		st;
+	int	st;
+	int	len;
+	int	i;
 
 	i = 0;
-	j = 0;
-	arr = (char **)malloc(sizeof(char *) * (t_len(s, c) + 1));
-	if (arr == 0)
-		return (0);
-	while (s[i] != '\0' && j < t_len(s, c))
+	len = 0;
+	while (s[i] != '\0')
 	{
 		while (s[i] && s[i] == c)
 			i++;
 		st = i;
 		while (s[i] && s[i] != c)
 			i++;
-		if (cp_word(s + st, i - st) == 0)
+		arr[len] = cp_word(s + st, i - st);
+		if (arr[len] == 0)
 			free_malloc(arr);
-		arr[j++] = cp_word(s + st, i - st);
+		len++;
 	}
-	arr[j] = 0;
+	arr[len] = '\0';
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**arr;
+
+	if (!s)
+		return (NULL);
+	arr = (char **)malloc(sizeof(char *) * (t_len(s, c) + 1));
+	if (arr == 0)
+		return (0);
+	cp_split(s, c, arr);
 	return (arr);
 }
