@@ -6,7 +6,7 @@
 /*   By: sejeon <sejeon@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 21:38:28 by sejeon            #+#    #+#             */
-/*   Updated: 2022/01/07 13:36:52 by sejeon           ###   ########.fr       */
+/*   Updated: 2022/01/07 17:47:25 by sejeon           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	st;
 	size_t	end;
 
+	if (!s1 || !set)
+		return (0);
 	st = 0;
 	end = ft_strlen(s1);
 	while (s1[st] && ft_set(s1[st], set))
