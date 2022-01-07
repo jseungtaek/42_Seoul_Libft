@@ -47,10 +47,11 @@ none
 memset()과 bzero() 모두 unsigned char로 캐스팅하는 과정이 있다.
 
 # 🚀 memcpy
+
 #include <string.h>
 
-     void *
-     memcpy(void *restrict dst, const void *restrict src, size_t n);
+void *
+memcpy(void *restrict dst, const void *restrict src, size_t n);
 ❗42에서 restrict 사용 불가
 
 ✔️ Restrict?
@@ -71,28 +72,6 @@ dst를 반환한다.
 ⁉️ Notice
 사용 시, 메모리 영역은 겹치면 안된다.
 곂친다면, memmove()함수를 사용해야 한다.
-
-#🚀 memccpy
-#include <string.h>
-
-void *
-memccpy(void *restrict dst, const void *restrict src, int c, size_t n);
-❗42에서 restrict 사용 불가
-
-✔️ Description
-The memccpy() function copies bytes from string src to string dst. If the character c (as converted to an unsigned char) occurs in the string src, the copy stops and a pointer to the
-byte after the copy of c in the string dst is returned. Otherwise, n bytes are copied, and
-a NULL pointer is returned.
-
-memccpy()함수는 src가 가리키는 메모리 주소로부터 n바이트 크기(길이)만큼 dst메모리에 복사한다. 단, 문자 c를 만나게 되면 c까지 복사하고 중단한다.
-
-✔️ Return
-dest에서 c의 다음 위치 (복사가 끝난 다음 메모리주소)를 리턴한다. c를 만나지 않는다면 n만큼 복사하고 NULL을 반환한다.
-
-⁉️ Notice
-c를 1바이트 크기가 아닌 자료형을 사용하여 찾을 경우, 문제가 생긴다.
-memccpy함수는 1바이트 메모리만 비교하여 찾기 때문이다.
-굳이 int형을 다뤄야 한다면, 1 ~ 255 범위 내 사용하는 것이 좋다.
 
 # 🚀 memmove
 #include <string.h>
