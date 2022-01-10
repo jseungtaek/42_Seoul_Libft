@@ -30,13 +30,20 @@ AR = ar
 ARFLAGS = crs
 RM = rm
 RMFLAGS = -f
+
+ifdef	WITH_BONUS
+	OBJECTS = $(OBJS) $(OBJS_B)
+else
+	OBJECTS = $(OBJS)
+endif
+
 all : $(NAME)
 %.o : %.c
 	$(CC) $(CFLAG) -c $< -o $@
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJECTS)
 	$(AR) $(ARFLAGS) $@ $^
-bonus : $(OBJS) $(OBJS_B)
-	$(AR) $(ARFLAGS) $(NAME) $^
+bonus :
+	make WITH_BONUS=1 all
 clean :
 	$(RM) $(RMFLAGS) $(OBJS) $(OBJS_B)
 fclean : clean
