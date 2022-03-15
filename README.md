@@ -231,7 +231,7 @@ malloc과 달리 전부 0으로 초기화한다.
 # 🚀 strdup
 #include <string.h>
 
-void	*ft_calloc(size_t count, size_t size)
+
 
 ✔️ Description
 The strdup() function allocates sufficient memory for a copy of the string s1, does the copy, and returns a pointer to it. The pointer may subsequently be used as an argument to the function free(3). If insufficient memory is available, NULL is returned and errno is set to ENOMEM.
